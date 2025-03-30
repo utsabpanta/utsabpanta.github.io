@@ -59,7 +59,7 @@ const About: React.FC = () => {
       <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-8 rounded-lg shadow-xl">
         <h3 className="text-2xl font-semibold mb-4">My Approach</h3>
         <ul className="list-disc list-inside space-y-2 text-lg">
-          <li>Drive impactful projects with innovative, cost-effctive solutions</li>
+          <li>Drive impactful projects with innovative, cost-effective solutions</li>
           <li>
             Lead teams to success through effective collaboration, mentorship and strategic guidance
           </li>
