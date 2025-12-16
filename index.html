@@ -1,16 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
+    <script>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Learn more about Utsab Pant, a passionate developer and leader." />
-    <meta name="keywords" content="Utsab Pant, developer, tech leader" />
+    <meta name="description" content="Utsab Pant - Engineering Manager with 12+ years of experience building scalable systems and leading high-performing teams." />
+    <meta name="keywords" content="Utsab Pant, Engineering Manager, Software Architect, Tech Leader, AWS, React, TypeScript" />
     <meta name="author" content="Utsab Pant" />
-    <meta property="og:title" content="About Utsab" />
-    <meta property="og:description" content="Learn more about Utsab Pant, a passionate developer and leader." />
+    <meta property="og:title" content="Utsab Pant | Engineering Leader" />
+    <meta property="og:description" content="Engineering Manager with 12+ years of experience building scalable systems and leading high-performing teams." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://utsabpanta.github.io/" />
-    <title>About Utsab</title>
+    <meta property="og:url" content="https://utsabpant.com/" />
+    <meta name="theme-color" content="#0a0d14" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <title>Utsab Pant | Engineering Leader</title>
+    <!-- Single Page Apps for GitHub Pages - redirect script -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) {
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
   </head>
   <body>
     <div id="root"></div>
