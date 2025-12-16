@@ -1,7 +1,7 @@
 ---
 title: "AWS re:Invent 2025: A Game-Changing Year for Serverless"
 excerpt: "A deep dive into the most impactful announcements for Lambda, DynamoDB, and API Gateway from AWS re:Invent 2025, and how they'll transform the way engineers build modern applications."
-date: "2025-12-15"
+date: "2025-12-13"
 tags: ["aws", "serverless", "lambda", "dynamodb", "api-gateway", "reinvent"]
 published: true
 ---
