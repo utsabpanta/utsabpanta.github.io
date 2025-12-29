@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaRss } from 'react-icons/fa';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -7,6 +7,7 @@ export default function Footer() {
     { href: 'https://github.com/utsabpanta', icon: FaGithub, label: 'GitHub' },
     { href: 'https://www.linkedin.com/in/utsab-pant-00415b71', icon: FaLinkedin, label: 'LinkedIn' },
     { href: 'mailto:utsabpant@utsabpant.com', icon: FaEnvelope, label: 'Email' },
+    { href: '/rss.xml', icon: FaRss, label: 'RSS Feed' },
   ];
 
   return (

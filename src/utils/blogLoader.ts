@@ -66,3 +66,18 @@ export function getPostBySlug(slug: string): BlogPost | null {
   if (!filepath) return null;
   return parsePost(filepath, blogFiles[filepath] as string);
 }
+
+export function getRelatedPosts(currentSlug: string, tags: string[], limit: number = 3): BlogPostMeta[] {
+  const allPosts = getAllPosts();
+
+  return allPosts
+    .filter((post) => post.slug !== currentSlug)
+    .map((post) => ({
+      ...post,
+      matchCount: post.tags.filter((tag) => tags.includes(tag)).length,
+    }))
+    .filter((post) => post.matchCount > 0)
+    .sort((a, b) => b.matchCount - a.matchCount || new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, limit)
+    .map(({ matchCount, ...post }) => post);
+}

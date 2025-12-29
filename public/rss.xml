@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Utsab Pant</title>
+    <link>https://utsabpanta.github.io</link>
+    <description>Technical blog about software engineering, architecture, and leadership</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 29 Dec 2025 18:25:32 GMT</lastBuildDate>
+    <atom:link href="https://utsabpanta.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Event-Driven Architecture: Patterns, Practices, and Pitfalls</title>
+      <link>https://utsabpanta.github.io/blog/event-driven-architecture-guide</link>
+      <guid isPermaLink="true">https://utsabpanta.github.io/blog/event-driven-architecture-guide</guid>
+      <pubDate>Mon, 22 Dec 2025 00:00:00 GMT</pubDate>
+      <description>A practical guide to building event-driven systems - when to use events, core patterns, AWS implementation, and the mistakes that derail teams.</description>
+    </item>
+    <item>
+      <title>RAG Architecture Patterns: Design Decisions That Actually Matter</title>
+      <link>https://utsabpanta.github.io/blog/rag-architecture-patterns</link>
+      <guid isPermaLink="true">https://utsabpanta.github.io/blog/rag-architecture-patterns</guid>
+      <pubDate>Thu, 18 Dec 2025 00:00:00 GMT</pubDate>
+      <description>A practical guide to building retrieval-augmented generation systems - the architectural trade-offs, common pitfalls, and when RAG isn&apos;t the answer.</description>
+    </item>
+    <item>
+      <title>Why Engineering Managers Must Stay Technically Sharp</title>
+      <link>https://utsabpanta.github.io/blog/technically-sharp-engineering-manager</link>
+      <guid isPermaLink="true">https://utsabpanta.github.io/blog/technically-sharp-engineering-manager</guid>
+      <pubDate>Tue, 16 Dec 2025 00:00:00 GMT</pubDate>
+      <description>The case for hands-on technical leadership - not to do the work, but to elevate those who do.</description>
+    </item>
+    <item>
+      <title>AWS re:Invent 2025: A Game-Changing Year for Serverless</title>
+      <link>https://utsabpanta.github.io/blog/aws-reinvent-2025-serverless-revolution</link>
+      <guid isPermaLink="true">https://utsabpanta.github.io/blog/aws-reinvent-2025-serverless-revolution</guid>
+      <pubDate>Sat, 13 Dec 2025 00:00:00 GMT</pubDate>
+      <description>A deep dive into the most impactful announcements for Lambda, DynamoDB, and API Gateway from AWS re:Invent 2025, and how they&apos;ll transform the way engineers build modern applications.</description>
+    </item>
+    <item>
+      <title>Welcome to My Blog</title>
+      <link>https://utsabpanta.github.io/blog/welcome-to-my-blog</link>
+      <guid isPermaLink="true">https://utsabpanta.github.io/blog/welcome-to-my-blog</guid>
+      <pubDate>Sat, 15 Nov 2025 00:00:00 GMT</pubDate>
+      <description>An introduction to my new blog where I&apos;ll be sharing insights on software engineering, architecture, and leadership.</description>
+    </item>
+  </channel>
+</rss>

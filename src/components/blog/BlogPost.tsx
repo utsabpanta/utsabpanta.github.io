@@ -5,7 +5,9 @@ import rehypeHighlight from 'rehype-highlight';
 import { format } from 'date-fns';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
-import { getPostBySlug } from '../../utils/blogLoader';
+import { getPostBySlug, getRelatedPosts } from '../../utils/blogLoader';
+import ReadingProgressBar from './ReadingProgressBar';
+import RelatedPosts from './RelatedPosts';
 
 const proseStyles = [
   'prose prose-lg prose-slate dark:prose-invert max-w-none',
@@ -22,6 +24,7 @@ const proseStyles = [
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getPostBySlug(slug) : null;
+  const relatedPosts = post ? getRelatedPosts(post.slug, post.tags) : [];
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -49,8 +52,10 @@ export default function BlogPost() {
   }
 
   return (
-    <article ref={ref} className="py-20">
-      <div className="max-w-3xl mx-auto px-6">
+    <>
+      <ReadingProgressBar />
+      <article ref={ref} className="py-20">
+        <div className="max-w-3xl mx-auto px-6">
         {/* Back link */}
         <Link
           to="/blog"
@@ -103,6 +108,9 @@ export default function BlogPost() {
           </div>
         </div>
 
+        {/* Related Posts */}
+        <RelatedPosts posts={relatedPosts} />
+
         {/* Footer */}
         <div
           className={`mt-16 pt-8 border-t border-slate-200 dark:border-slate-700 transition-all duration-700 delay-200 ${
@@ -117,7 +125,8 @@ export default function BlogPost() {
             Back to all posts
           </Link>
         </div>
-      </div>
-    </article>
+        </div>
+      </article>
+    </>
   );
 }
