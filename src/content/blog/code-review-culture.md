@@ -6,11 +6,11 @@ tags: ["engineering-culture", "code-review", "leadership", "team-dynamics"]
 published: true
 ---
 
-Code reviews are one of the most valuable practices in software engineering—and one of the most frequently botched. Done well, they catch bugs, spread knowledge, and level up your team. Done poorly, they become bottlenecks and breeding grounds for resentment.
+Code reviews are one of the most valuable practices in software engineering, and one of the most frequently botched. Done well, they catch bugs, spread knowledge, and level up your team. Done poorly, they become bottlenecks and breeding grounds for resentment.
 
 I've seen both extremes. Teams where reviews take longer than writing the code. Senior engineers who use reviews to establish dominance. Junior engineers who stop proposing ideas because everything gets nitpicked.
 
-But I've also seen teams where reviews are genuinely collaborative—where engineers look forward to feedback and the process makes both the code and the people better.
+But I've also seen teams where reviews are genuinely collaborative - where engineers look forward to feedback and the process makes both the code and the people better.
 
 The difference is culture. And culture can be designed.
 
@@ -70,7 +70,7 @@ The fix: front-load design discussions. By the time you're reviewing code, you s
 
 ### Treat Reviews as Real Work
 
-The most important shift. Reviews aren't overhead—they're core work with real priority.
+The most important shift. Reviews aren't overhead - they're core work with real priority.
 
 This means:
 - Review time is in capacity planning
@@ -93,7 +93,7 @@ Human reviewers should ask: Is this the right approach? Will future engineers un
 
 Large PRs are where reviews go to die. A 50-file change triggers "I don't have time for this." It sits for days. When finally reviewed, feedback is shallow.
 
-Small PRs (under 200-400 lines) get reviewed quickly and thoroughly. This requires discipline—breaking features into incremental chunks, using feature flags, separating refactoring from behavior changes.
+Small PRs (under 200-400 lines) get reviewed quickly and thoroughly. This requires discipline-breaking features into incremental chunks, using feature flags, separating refactoring from behavior changes.
 
 ### Label Your Feedback
 
@@ -164,7 +164,7 @@ It's easy to comment on code that exists. Harder to notice what isn't there:
 
 ### Know When to Stop
 
-If a PR needs a fundamentally different approach, say so directly instead of leaving twenty comments on symptoms. "I think this needs rethinking—let's discuss before you iterate further."
+If a PR needs a fundamentally different approach, say so directly instead of leaving twenty comments on symptoms. "I think this needs rethinking - let's discuss before you iterate further."
 
 ---
 
@@ -214,7 +214,7 @@ When you disagree:
 
 ## Handling Difficult Situations
 
-**Hostile reviewer:** Address directly in private. "Your comments can come across as harsh—can we talk about framing feedback differently?" If it continues, involve management. Review tone is a performance issue.
+**Hostile reviewer:** Address directly in private. "Your comments can come across as harsh - can we talk about framing feedback differently?" If it continues, involve management. Review tone is a performance issue.
 
 **Non-responsive reviewer:** Make expectations explicit. If they still don't respond, reassign with a face-saving out: "Reassigning since you're swamped."
 
