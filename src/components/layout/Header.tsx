@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import { useTheme } from '../../context/ThemeContext';
 
 interface HeaderProps {
@@ -19,7 +20,7 @@ export default function Header({ isHomePage }: HeaderProps) {
       setIsScrolled(window.scrollY > 20);
 
       if (isHomePage) {
-        const sections = ['about', 'skills', 'contact'];
+        const sections = ['about', 'skills', 'latest-posts', 'contact'];
 
         // Check if we're at the bottom of the page
         const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
@@ -35,8 +36,6 @@ export default function Header({ isHomePage }: HeaderProps) {
           const element = document.getElementById(section);
           if (element) {
             const rect = element.getBoundingClientRect();
-            // Section is considered active if its top is above center of viewport
-            // and its bottom is below the top of viewport
             if (rect.top <= window.innerHeight / 2 && rect.bottom >= 100) {
               currentSection = section;
             }
@@ -47,7 +46,7 @@ export default function Header({ isHomePage }: HeaderProps) {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Call on mount
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isHomePage]);
 
@@ -79,6 +78,9 @@ export default function Header({ isHomePage }: HeaderProps) {
     { id: 'contact', label: 'Contact' },
   ];
 
+  // Determine if Blog route is active
+  const isBlogActive = location.pathname.startsWith('/blog');
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
@@ -109,7 +111,11 @@ export default function Header({ isHomePage }: HeaderProps) {
                   >
                     {section.label}
                     {activeSection === section.id && (
-                      <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full" />
+                      <motion.span
+                        layoutId="nav-indicator"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full"
+                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                      />
                     )}
                   </button>
                 ))}
@@ -124,15 +130,15 @@ export default function Header({ isHomePage }: HeaderProps) {
             )}
             <NavLink
               to="/blog"
-              className={({ isActive }) => `${navLinkClasses(isActive)} py-1`}
+              className={() => `${navLinkClasses(isBlogActive)} py-1`}
             >
-              {({ isActive }) => (
-                <>
-                  Blog
-                  {isActive && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full" />
-                  )}
-                </>
+              Blog
+              {isBlogActive && (
+                <motion.span
+                  layoutId="nav-indicator"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full"
+                  transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                />
               )}
             </NavLink>
 
@@ -142,12 +148,25 @@ export default function Header({ isHomePage }: HeaderProps) {
               className="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               aria-label="Toggle theme"
             >
-              {theme === 'dark' ? <FaSun className="w-4 h-4" /> : <FaMoon className="w-4 h-4" />}
+              <motion.div
+                key={theme}
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                {theme === 'dark' ? <FaSun className="w-4 h-4" /> : <FaMoon className="w-4 h-4" />}
+              </motion.div>
             </button>
           </nav>
 
           {/* Mobile controls */}
           <div className="flex items-center gap-2 md:hidden">
+            <Link
+              to="/blog"
+              className="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+            >
+              Blog
+            </Link>
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"

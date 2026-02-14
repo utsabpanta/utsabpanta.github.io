@@ -8,4 +8,3 @@ This repo contains code for my personal portfolio page which is live [here](http
 - Tailwind css
 - Typescript
 - React-icon
-- Formspree

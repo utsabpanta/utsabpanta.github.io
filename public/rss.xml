@@ -5,8 +5,29 @@
     <link>https://utsabpanta.github.io</link>
     <description>Technical blog about software engineering, architecture, and leadership</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Dec 2025 18:41:32 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 14 Feb 2026 20:01:59 GMT</lastBuildDate>
     <atom:link href="https://utsabpanta.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Technical Debt: A Shared Responsibility</title>
+      <link>https://utsabpanta.github.io/blog/technical-debt-as-leadership</link>
+      <guid isPermaLink="true">https://utsabpanta.github.io/blog/technical-debt-as-leadership</guid>
+      <pubDate>Sat, 31 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Technical debt isn&apos;t just a coding problem - it&apos;s a team challenge. Here&apos;s how leaders and engineers can work together to manage it effectively.</description>
+    </item>
+    <item>
+      <title>Code Review Culture: Building Constructive Feedback Loops</title>
+      <link>https://utsabpanta.github.io/blog/code-review-culture</link>
+      <guid isPermaLink="true">https://utsabpanta.github.io/blog/code-review-culture</guid>
+      <pubDate>Mon, 19 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Code reviews can be your team&apos;s superpower or its biggest source of friction. Here&apos;s how to build a review culture that actually works.</description>
+    </item>
+    <item>
+      <title>The Art of Good Abstractions: When to Abstract, When to Duplicate</title>
+      <link>https://utsabpanta.github.io/blog/the-art-of-good-abstractions</link>
+      <guid isPermaLink="true">https://utsabpanta.github.io/blog/the-art-of-good-abstractions</guid>
+      <pubDate>Thu, 08 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Premature abstraction is the root of much suffering. Here&apos;s how to recognize when code wants to be unified versus when duplication is the right choice.</description>
+    </item>
     <item>
       <title>API Design Principles: Building Interfaces Developers Love</title>
       <link>https://utsabpanta.github.io/blog/api-design-principles</link>

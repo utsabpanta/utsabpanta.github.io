@@ -1,10 +1,18 @@
 import { useState, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 import { FaSearch, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { getAllPosts } from '../../utils/blogLoader';
 import BlogCard from './BlogCard';
+import SEO from '../SEO';
 
 const POSTS_PER_PAGE = 10;
+
+const springTransition = {
+  type: 'spring' as const,
+  stiffness: 100,
+  damping: 15,
+};
 
 export default function BlogList() {
   const allPosts = getAllPosts();
@@ -41,26 +49,33 @@ export default function BlogList() {
 
   return (
     <div ref={ref} className="py-20">
+      <SEO
+        title="Blog"
+        description="Thoughts on engineering leadership, software architecture, and building great teams."
+        path="/blog"
+      />
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
-        <div
-          className={`mb-8 transition-all duration-700 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+        <motion.div
+          className="mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={springTransition}
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-700 to-blue-500 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text-animated" style={{ letterSpacing: '-0.03em' }}>
             Blog
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-400">
             Thoughts on engineering, leadership, and building great software.
           </p>
-        </div>
+        </motion.div>
 
         {/* Search */}
-        <div
-          className={`mb-8 transition-all duration-700 delay-100 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+        <motion.div
+          className="mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ ...springTransition, delay: 0.1 }}
         >
           <div className="relative">
             <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -77,31 +92,34 @@ export default function BlogList() {
               Found {filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'}
             </p>
           )}
-        </div>
+        </motion.div>
 
         {/* Posts */}
         {paginatedPosts.length > 0 ? (
           <>
             <div className="space-y-6">
               {paginatedPosts.map((post, index) => (
-                <div
+                <motion.div
                   key={post.slug}
-                  className={`transition-all duration-700 ${
-                    inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: `${(index + 2) * 100}ms` }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{
+                    ...springTransition,
+                    delay: index * 0.08 + 0.2,
+                  }}
                 >
                   <BlogCard post={post} />
-                </div>
+                </motion.div>
               ))}
             </div>
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div
-                className={`flex items-center justify-center gap-2 mt-12 transition-all duration-700 ${
-                  inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
+              <motion.div
+                className="flex items-center justify-center gap-2 mt-12"
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <button
                   onClick={() => goToPage(currentPage - 1)}
@@ -134,14 +152,15 @@ export default function BlogList() {
                 >
                   <FaChevronRight className="w-4 h-4" />
                 </button>
-              </div>
+              </motion.div>
             )}
           </>
         ) : (
-          <div
-            className={`bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-12 text-center transition-all duration-700 ${
-              inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
+          <motion.div
+            className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-12 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={springTransition}
           >
             {searchTerm ? (
               <>
@@ -150,7 +169,7 @@ export default function BlogList() {
                   Try a different search term or{' '}
                   <button
                     onClick={() => setSearchTerm('')}
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-blue-600 dark:text-blue-400 fancy-link"
                   >
                     clear the search
                   </button>
@@ -164,7 +183,7 @@ export default function BlogList() {
                 </p>
               </>
             )}
-          </div>
+          </motion.div>
         )}
       </div>
     </div>
