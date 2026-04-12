@@ -6,7 +6,7 @@ tags: ["artificial-intelligence", "developer-tools", "agentic-engineering", "cla
 published: true
 ---
 
-I've been using Claude Code for some of my personal fun projects recently, and the workflow feels genuinely different from what I'm used to. Instead of writing every line myself, I describe what I want, the agent figures out the steps, and I review the result. The human is still very much in the loop - making architectural decisions, reviewing changes, catching edge cases - but the mechanics of how code gets written are shifting.
+I've been using Claude Code for my personal projects for the past few months, and the workflow feels genuinely different from what I'm used to. Instead of writing every line myself, I describe what I want, the agent figures out the steps, and I review the result. The human is still very much in the loop - making architectural decisions, reviewing changes, catching edge cases - but the mechanics of how code gets written are shifting.
 
 This shift has a name now: agentic engineering. You've probably seen "agentic AI" in the news - Gartner says 40% of enterprise apps will use AI agents by the end of 2026, and every major AI lab has shipped an agent framework. But "agentic AI" is the broad term that covers everything from customer service bots to supply chain automation. Agentic engineering is the more specific idea that matters to us as software engineers: AI handles more of the implementation, while engineers focus on architecture, quality, and correctness. It's the evolution past "vibe coding" into something more disciplined and deliberate.
 
@@ -791,10 +791,10 @@ Build from there based on what you actually need. The best configurations grow f
 ## References
 
 - [Claude Code Documentation](https://code.claude.com/docs) - Full documentation for Claude Code.
-- [CLAUDE.md Guide](https://code.claude.com/docs/en/memory.md) - How CLAUDE.md files work, loading order, and best practices.
-- [Skills](https://code.claude.com/docs/en/skills.md) - Creating and using skills.
-- [Sub-agents](https://code.claude.com/docs/en/sub-agents.md) - Custom agent definitions.
-- [Hooks Guide](https://code.claude.com/docs/en/hooks-guide.md) - Lifecycle hooks for automation.
-- [MCP Servers](https://code.claude.com/docs/en/mcp.md) - Connecting external tools.
+- [CLAUDE.md Guide](https://code.claude.com/docs/en/memory) - How CLAUDE.md files work, loading order, and best practices.
+- [Skills](https://code.claude.com/docs/en/skills) - Creating and using skills.
+- [Sub-agents](https://code.claude.com/docs/en/sub-agents) - Custom agent definitions.
+- [Hooks Guide](https://code.claude.com/docs/en/hooks-guide) - Lifecycle hooks for automation.
+- [MCP Servers](https://code.claude.com/docs/en/mcp) - Connecting external tools.
 - [Model Context Protocol](https://modelcontextprotocol.io/) - The open standard for AI tool integration.
 - [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) - Anthropic's guide to agent architecture patterns.
