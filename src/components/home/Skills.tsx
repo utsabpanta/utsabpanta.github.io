@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 import {
-  FaReact, FaNodeJs, FaAws, FaGitAlt, FaDocker, FaPhp, FaAngular, FaJava,
+  FaReact, FaNodeJs, FaAws, FaGitAlt, FaDocker, FaPhp, FaAngular, FaJava, FaDatabase,
 } from 'react-icons/fa';
 import {
-  SiTypescript, SiJavascript, SiKubernetes, SiCsharp, SiExpress,
-  SiPostgresql, SiAmazondynamodb, SiGo, SiCircleci, SiApachekafka, SiGithubactions,
+  SiTypescript, SiJavascript, SiKubernetes, SiDotnet, SiExpress,
+  SiPostgresql, SiGo, SiCircleci, SiApachekafka, SiGithubactions,
 } from 'react-icons/si';
 import { IconType } from 'react-icons';
 import { useTheme } from '../../context/ThemeContext';
@@ -31,7 +31,7 @@ const skillGroups: SkillGroup[] = [
       { name: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E' },
       { name: 'Go', Icon: SiGo, color: '#00ADD8' },
       { name: 'Java', Icon: FaJava, color: '#E76F00' },
-      { name: 'C#', Icon: SiCsharp, color: '#68217A' },
+      { name: 'C#', Icon: SiDotnet, color: '#512BD4' },
       { name: 'PHP', Icon: FaPhp, color: '#777BB4' },
     ],
   },
@@ -48,7 +48,7 @@ const skillGroups: SkillGroup[] = [
       { name: 'Node.js', Icon: FaNodeJs, color: '#339933' },
       { name: 'Express', Icon: SiExpress, color: '#000000', darkColor: '#FFFFFF' },
       { name: 'PostgreSQL', Icon: SiPostgresql, color: '#336791' },
-      { name: 'DynamoDB', Icon: SiAmazondynamodb, color: '#4053D6' },
+      { name: 'DynamoDB', Icon: FaDatabase, color: '#4053D6' },
       { name: 'Kafka', Icon: SiApachekafka, color: '#231F20', darkColor: '#FFFFFF' },
     ],
   },

@@ -8,6 +8,18 @@ import SEO from '../SEO';
 
 const POSTS_PER_PAGE = 10;
 
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Utsab Pant — Blog',
+  url: 'https://utsabpant.com/blog',
+  author: {
+    '@type': 'Person',
+    name: 'Utsab Pant',
+    url: 'https://utsabpant.com',
+  },
+};
+
 const springTransition = {
   type: 'spring' as const,
   stiffness: 100,
@@ -53,6 +65,7 @@ export default function BlogList() {
         title="Blog"
         description="Thoughts on engineering leadership, software architecture, and building great teams."
         path="/blog"
+        schema={blogSchema}
       />
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}

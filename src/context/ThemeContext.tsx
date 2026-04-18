@@ -10,23 +10,21 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('theme') as Theme;
-      if (saved) return saved;
-    }
-    return 'dark';
-  });
+  const [theme, setThemeState] = useState<Theme>('dark');
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.classList.remove('light', 'dark');
-    root.classList.add(theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    const current = document.documentElement.classList.contains('light') ? 'light' : 'dark';
+    if (current !== theme) setThemeState(current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    const next: Theme = theme === 'dark' ? 'light' : 'dark';
+    setThemeState(next);
+    const root = document.documentElement;
+    root.classList.remove('light', 'dark');
+    root.classList.add(next);
+    localStorage.setItem('theme', next);
   };
 
   return (

@@ -60,7 +60,13 @@ export default function BlogPost() {
     );
   }
 
-  const blogPostingSchema = {
+  const canonicalImage = post.coverImage
+    ? (/^https?:\/\//i.test(post.coverImage)
+        ? post.coverImage
+        : `https://utsabpant.com${post.coverImage.startsWith('/') ? '' : '/'}${post.coverImage}`)
+    : undefined;
+
+  const blogPostingSchema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
@@ -83,6 +89,7 @@ export default function BlogPost() {
     keywords: post.tags.join(', '),
     wordCount: post.content.split(/\s+/).length,
   };
+  if (canonicalImage) blogPostingSchema.image = canonicalImage;
 
   return (
     <>
@@ -91,6 +98,7 @@ export default function BlogPost() {
         description={post.excerpt}
         path={`/blog/${post.slug}`}
         type="article"
+        image={post.coverImage}
         article={{
           publishedTime: post.date,
           tags: post.tags,

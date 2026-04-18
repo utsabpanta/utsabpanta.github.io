@@ -11,6 +11,7 @@ interface SEOProps {
   description?: string;
   path?: string;
   type?: 'website' | 'article';
+  image?: string;
   article?: {
     publishedTime: string;
     tags: string[];
@@ -19,16 +20,24 @@ interface SEOProps {
   schema?: Record<string, unknown>;
 }
 
+function absoluteUrl(maybePath: string): string {
+  if (/^https?:\/\//i.test(maybePath)) return maybePath;
+  return `${SITE_URL}${maybePath.startsWith('/') ? '' : '/'}${maybePath}`;
+}
+
 export default function SEO({
   title,
   description = DEFAULT_DESCRIPTION,
   path = '',
   type = 'website',
+  image,
   article,
   schema,
 }: SEOProps) {
   const pageTitle = title ? `${title} | ${SITE_NAME}` : DEFAULT_TITLE;
   const canonicalUrl = `${SITE_URL}${path}`;
+  const resolvedImage = image ? absoluteUrl(image) : undefined;
+  const twitterCard = resolvedImage ? 'summary_large_image' : 'summary';
 
   return (
     <Helmet>
@@ -42,6 +51,7 @@ export default function SEO({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content={SITE_NAME} />
+      {resolvedImage && <meta property="og:image" content={resolvedImage} />}
 
       {/* Article-specific OG tags */}
       {article && (
@@ -55,9 +65,10 @@ export default function SEO({
       )}
 
       {/* Twitter Card */}
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content={twitterCard} />
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:description" content={description} />
+      {resolvedImage && <meta name="twitter:image" content={resolvedImage} />}
 
       {/* Structured Data */}
       {schema && (

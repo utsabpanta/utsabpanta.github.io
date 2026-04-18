@@ -7,6 +7,7 @@ export interface BlogPost {
   readTime: number;
   tags: string[];
   published: boolean;
+  coverImage?: string;
 }
 
 export type BlogPostMeta = Omit<BlogPost, 'content'>;

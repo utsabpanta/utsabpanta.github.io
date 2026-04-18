@@ -48,6 +48,7 @@ function parsePost(filepath: string, raw: string): BlogPost {
     tags: (data.tags as string[]) || [],
     published: data.published !== false,
     readTime: calculateReadTime(body),
+    coverImage: (data.coverImage as string) || undefined,
   };
 }
 

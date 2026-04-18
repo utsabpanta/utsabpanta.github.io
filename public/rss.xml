@@ -5,8 +5,22 @@
     <link>https://utsabpanta.github.io</link>
     <description>Technical blog about software engineering, architecture, and leadership</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Feb 2026 20:01:59 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 18 Apr 2026 23:07:36 GMT</lastBuildDate>
     <atom:link href="https://utsabpanta.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Agentic Engineering: A Practical Guide to Working With AI Agents</title>
+      <link>https://utsabpanta.github.io/blog/agentic-engineering-practical-guide</link>
+      <guid isPermaLink="true">https://utsabpanta.github.io/blog/agentic-engineering-practical-guide</guid>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Agentic engineering is how software gets built now. Here&apos;s what it actually means, how it works under the hood, and how to set up your projects to get the most out of it.</description>
+    </item>
+    <item>
+      <title>AI in EdTech: Teaching, Not Shortcuts</title>
+      <link>https://utsabpanta.github.io/blog/ai-in-edtech-teaching-not-shortcuts</link>
+      <guid isPermaLink="true">https://utsabpanta.github.io/blog/ai-in-edtech-teaching-not-shortcuts</guid>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate>
+      <description>AI is already in students&apos; hands. The question isn&apos;t whether to allow it. It&apos;s how edtech can use it to deepen learning, rethink assessment, and build responsible guardrails.</description>
+    </item>
     <item>
       <title>Technical Debt: A Shared Responsibility</title>
       <link>https://utsabpanta.github.io/blog/technical-debt-as-leadership</link>
