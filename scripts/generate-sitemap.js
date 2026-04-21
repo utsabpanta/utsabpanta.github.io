@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BLOG_DIR = path.join(__dirname, '../src/content/blog');
-const OUTPUT_DIR = path.join(__dirname, '../public');
+const OUTPUT_DIR = path.join(__dirname, '../dist');
 
 const SITE_URL = 'https://utsabpant.com';
 
