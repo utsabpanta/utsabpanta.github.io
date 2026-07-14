@@ -28,7 +28,7 @@ const personSchema = {
 
 export default function Home() {
   return (
-    <div className="space-y-6 pb-8">
+    <div className="space-y-24 md:space-y-28 pb-24">
       <SEO path="/" schema={personSchema} />
       <Intro />
       <Skills />

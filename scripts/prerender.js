@@ -42,12 +42,24 @@ function loadRoutes() {
     })
     .filter(Boolean);
 
+  // Each route is written both as <dir>/index.html (serves the trailing-slash
+  // URL) and as <name>.html (GitHub Pages serves it at the extensionless URL,
+  // so the canonical no-slash URL returns 200 instead of a 301).
   return [
-    { url: '/', outPath: path.join(DIST_DIR, 'index.html') },
-    { url: '/blog', outPath: path.join(DIST_DIR, 'blog', 'index.html') },
+    { url: '/', outPaths: [path.join(DIST_DIR, 'index.html')] },
+    {
+      url: '/blog',
+      outPaths: [
+        path.join(DIST_DIR, 'blog', 'index.html'),
+        path.join(DIST_DIR, 'blog.html'),
+      ],
+    },
     ...posts.map((p) => ({
       url: `/blog/${p.slug}`,
-      outPath: path.join(DIST_DIR, 'blog', p.slug, 'index.html'),
+      outPaths: [
+        path.join(DIST_DIR, 'blog', p.slug, 'index.html'),
+        path.join(DIST_DIR, 'blog', `${p.slug}.html`),
+      ],
     })),
   ];
 }
@@ -100,7 +112,9 @@ async function prerender() {
       .join('\n    ');
 
     const fullHtml = injectIntoTemplate(template, { headTags, bodyHtml });
-    writePage(route.outPath, fullHtml);
+    for (const outPath of route.outPaths) {
+      writePage(outPath, fullHtml);
+    }
   }
 
   console.log(`Prerendered ${routes.length} pages.`);

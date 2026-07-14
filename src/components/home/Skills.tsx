@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 import {
   FaReact, FaNodeJs, FaAws, FaGitAlt, FaDocker, FaPhp, FaAngular, FaJava, FaDatabase,
@@ -28,17 +26,17 @@ const skillGroups: SkillGroup[] = [
     label: 'Languages',
     skills: [
       { name: 'TypeScript', Icon: SiTypescript, color: '#3178C6' },
-      { name: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E' },
+      { name: 'JavaScript', Icon: SiJavascript, color: '#A89412', darkColor: '#E8D44D' },
       { name: 'Go', Icon: SiGo, color: '#00ADD8' },
       { name: 'Java', Icon: FaJava, color: '#E76F00' },
-      { name: 'C#', Icon: SiDotnet, color: '#512BD4' },
+      { name: 'C#', Icon: SiDotnet, color: '#512BD4', darkColor: '#8B6FE8' },
       { name: 'PHP', Icon: FaPhp, color: '#777BB4' },
     ],
   },
   {
     label: 'Frontend',
     skills: [
-      { name: 'React', Icon: FaReact, color: '#61DAFB' },
+      { name: 'React', Icon: FaReact, color: '#149ECA', darkColor: '#58C4DC' },
       { name: 'Angular', Icon: FaAngular, color: '#DD0031' },
     ],
   },
@@ -46,124 +44,79 @@ const skillGroups: SkillGroup[] = [
     label: 'Backend & Data',
     skills: [
       { name: 'Node.js', Icon: FaNodeJs, color: '#339933' },
-      { name: 'Express', Icon: SiExpress, color: '#000000', darkColor: '#FFFFFF' },
+      { name: 'Express', Icon: SiExpress, color: '#475569', darkColor: '#CBD5E1' },
       { name: 'PostgreSQL', Icon: SiPostgresql, color: '#336791' },
       { name: 'DynamoDB', Icon: FaDatabase, color: '#4053D6' },
-      { name: 'Kafka', Icon: SiApachekafka, color: '#231F20', darkColor: '#FFFFFF' },
+      { name: 'Kafka', Icon: SiApachekafka, color: '#37322E', darkColor: '#CBD5E1' },
     ],
   },
   {
     label: 'Cloud & DevOps',
     skills: [
-      { name: 'AWS', Icon: FaAws, color: '#FF9900' },
+      { name: 'AWS', Icon: FaAws, color: '#EC7211' },
       { name: 'Docker', Icon: FaDocker, color: '#2496ED' },
       { name: 'Kubernetes', Icon: SiKubernetes, color: '#326CE5' },
       { name: 'Git', Icon: FaGitAlt, color: '#F05032' },
-      { name: 'CircleCI', Icon: SiCircleci, color: '#343434', darkColor: '#FFFFFF' },
+      { name: 'CircleCI', Icon: SiCircleci, color: '#475569', darkColor: '#CBD5E1' },
       { name: 'GitHub Actions', Icon: SiGithubactions, color: '#2088FF' },
     ],
   },
 ];
 
+const springTransition = {
+  type: 'spring' as const,
+  stiffness: 100,
+  damping: 15,
+};
+
 export default function Skills() {
-  const [isClient, setIsClient] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const { theme } = useTheme();
-
-  useEffect(() => {
-    setIsClient(true);
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const { ref, inView } = useInView({
-    threshold: isMobile ? 0.1 : 0.3,
-    triggerOnce: true,
-  });
 
   const getIconColor = (skill: Skill) =>
     theme === 'dark' && skill.darkColor ? skill.darkColor : skill.color;
 
-  const isVisible = isClient && (inView || isMobile);
-  let globalIndex = 0;
-
   return (
-    <section id="skills" ref={ref}>
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="bg-white dark:bg-slate-800/50 rounded-3xl shadow-xl dark:shadow-slate-900/30 p-8 md:p-12 border border-slate-100 dark:border-slate-700/50">
-        {/* Section Title */}
+    <section id="skills">
+      <div className="max-w-3xl mx-auto px-6">
         <motion.div
-          className="text-center mb-10"
           initial={{ opacity: 0, y: 24 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ type: 'spring', stiffness: 100, damping: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={springTransition}
         >
-          <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-3">
-            What I Work With
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            Technical Skills
+          <hr className="hairline mb-12" />
+          <h2 className="font-display text-3xl font-medium text-slate-900 dark:text-white mb-8">
+            Skills
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-            Technologies and tools I work with to build robust, scalable solutions.
-          </p>
         </motion.div>
 
-        {/* Grouped Skills */}
-        <div className="space-y-8">
-          {skillGroups.map((group) => (
-            <div key={group.label}>
-              <motion.h3
-                className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4"
-                initial={{ opacity: 0 }}
-                animate={isVisible ? { opacity: 1 } : {}}
-                transition={{ duration: 0.5 }}
-              >
+        <div className="space-y-10">
+          {skillGroups.map((group, groupIndex) => (
+            <motion.div
+              key={group.label}
+              className="sm:grid sm:grid-cols-[10rem_1fr] sm:gap-6"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...springTransition, delay: groupIndex * 0.08 + 0.1 }}
+            >
+              <h3 className="font-mono text-[0.6875rem] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-[0.25em] mb-3 sm:mb-0 sm:pt-2">
                 {group.label}
-              </motion.h3>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
-                {group.skills.map((skill) => {
-                  const index = globalIndex++;
-                  return (
-                    <motion.div
-                      key={skill.name}
-                      className="group bg-slate-50 dark:bg-slate-700/50 p-4 md:p-5 rounded-2xl shadow-md flex flex-col items-center justify-center cursor-pointer"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                      transition={{
-                        type: 'spring',
-                        stiffness: 120,
-                        damping: 14,
-                        delay: isMobile ? 0 : index * 0.04,
-                      }}
-                      whileHover={{
-                        y: -8,
-                        scale: 1.05,
-                        boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
-                        transition: { type: 'spring', stiffness: 300, damping: 20 },
-                      }}
-                    >
-                      <div
-                        className="p-3 rounded-xl mb-3 transition-transform duration-300 group-hover:scale-110"
-                        style={{ backgroundColor: `${getIconColor(skill)}15` }}
-                      >
-                        <skill.Icon
-                          className="w-8 h-8 md:w-10 md:h-10 transition-all duration-300"
-                          style={{ color: getIconColor(skill) }}
-                        />
-                      </div>
-                      <span className="text-sm font-semibold text-slate-800 dark:text-slate-200 text-center">
-                        {skill.name}
-                      </span>
-                    </motion.div>
-                  );
-                })}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {group.skills.map((skill) => (
+                  <span
+                    key={skill.name}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 text-sm text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 rounded-full"
+                  >
+                    <skill.Icon
+                      className="w-4 h-4 opacity-80"
+                      style={{ color: getIconColor(skill) }}
+                    />
+                    {skill.name}
+                  </span>
+                ))}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
         </div>
       </div>
     </section>

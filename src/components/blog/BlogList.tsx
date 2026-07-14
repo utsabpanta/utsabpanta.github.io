@@ -60,49 +60,50 @@ export default function BlogList() {
   };
 
   return (
-    <div ref={ref} className="py-20">
+    <div ref={ref} className="pt-32 pb-20">
       <SEO
         title="Blog"
         description="Thoughts on engineering leadership, software architecture, and building great teams."
         path="/blog"
         schema={blogSchema}
       />
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-3xl mx-auto px-6">
         {/* Header */}
         <motion.div
-          className="mb-8"
+          className="mb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={springTransition}
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text-animated" style={{ letterSpacing: '-0.03em' }}>
-            Blog
+          <p className="eyebrow mb-4">The blog</p>
+          <h1 className="font-display text-5xl md:text-6xl font-medium text-slate-900 dark:text-white mb-5">
+            Writing
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
+          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
             Thoughts on engineering, leadership, and building great software.
           </p>
         </motion.div>
 
         {/* Search */}
         <motion.div
-          className="mb-8"
+          className="mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ ...springTransition, delay: 0.1 }}
         >
           <div className="relative">
-            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
             <input
               type="text"
-              placeholder="Search posts by title, content, or tags..."
+              placeholder="Search posts by title, content, or tags…"
               value={searchTerm}
               onChange={handleSearch}
-              className="w-full pl-11 pr-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full pl-11 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full text-[0.9375rem] text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:border-transparent transition-all"
             />
           </div>
           {searchTerm && (
-            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-              Found {filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'}
+            <p className="mt-3 font-mono text-xs text-slate-500 dark:text-slate-400 tracking-wide">
+              {filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'} found
             </p>
           )}
         </motion.div>
@@ -110,7 +111,7 @@ export default function BlogList() {
         {/* Posts */}
         {paginatedPosts.length > 0 ? (
           <>
-            <div className="space-y-6">
+            <div className="border-t border-slate-200 dark:border-slate-800 divide-y divide-slate-200 dark:divide-slate-800">
               {paginatedPosts.map((post, index) => (
                 <motion.div
                   key={post.slug}
@@ -118,7 +119,7 @@ export default function BlogList() {
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{
                     ...springTransition,
-                    delay: index * 0.08 + 0.2,
+                    delay: Math.min(index, 5) * 0.06 + 0.15,
                   }}
                 >
                   <BlogCard post={post} />
@@ -137,20 +138,20 @@ export default function BlogList() {
                 <button
                   onClick={() => goToPage(currentPage - 1)}
                   disabled={currentPage === 1}
-                  className="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2.5 rounded-full border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-600 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                   aria-label="Previous page"
                 >
-                  <FaChevronLeft className="w-4 h-4" />
+                  <FaChevronLeft className="w-3.5 h-3.5" />
                 </button>
 
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                   <button
                     key={page}
                     onClick={() => goToPage(page)}
-                    className={`w-10 h-10 rounded-lg font-medium transition-colors ${
+                    className={`w-10 h-10 rounded-full font-mono text-sm transition-colors ${
                       currentPage === page
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700'
+                        ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900'
+                        : 'border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-600'
                     }`}
                   >
                     {page}
@@ -160,29 +161,31 @@ export default function BlogList() {
                 <button
                   onClick={() => goToPage(currentPage + 1)}
                   disabled={currentPage === totalPages}
-                  className="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2.5 rounded-full border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-600 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                   aria-label="Next page"
                 >
-                  <FaChevronRight className="w-4 h-4" />
+                  <FaChevronRight className="w-3.5 h-3.5" />
                 </button>
               </motion.div>
             )}
           </>
         ) : (
           <motion.div
-            className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-12 text-center"
+            className="text-center py-20 border-t border-slate-200 dark:border-slate-800"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={springTransition}
           >
             {searchTerm ? (
               <>
-                <p className="text-xl text-slate-700 dark:text-slate-300 mb-2">No posts found</p>
+                <p className="font-display text-2xl text-slate-800 dark:text-slate-200 mb-3">
+                  No posts found
+                </p>
                 <p className="text-slate-500 dark:text-slate-400">
                   Try a different search term or{' '}
                   <button
                     onClick={() => setSearchTerm('')}
-                    className="text-blue-600 dark:text-blue-400 fancy-link"
+                    className="text-blue-700 dark:text-blue-300 fancy-link"
                   >
                     clear the search
                   </button>
@@ -190,7 +193,9 @@ export default function BlogList() {
               </>
             ) : (
               <>
-                <p className="text-xl text-slate-700 dark:text-slate-300 mb-2">No posts yet</p>
+                <p className="font-display text-2xl text-slate-800 dark:text-slate-200 mb-3">
+                  No posts yet
+                </p>
                 <p className="text-slate-500 dark:text-slate-400">
                   Check back soon for articles on software engineering and leadership.
                 </p>

@@ -15,28 +15,28 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-      <div className="max-w-5xl mx-auto px-6 py-8">
+    <footer className="border-t border-slate-200 dark:border-slate-800/80">
+      <div className="max-w-3xl mx-auto px-6 py-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-center md:text-left">
-            <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
+            <p className="font-display italic text-lg text-slate-800 dark:text-slate-200">
               Utsab Pant
             </p>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              Engineering Leader & Architect
+            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400 mt-1">
+              Engineering Leader &amp; Architect
             </p>
-            <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
+            <p className="text-xs text-slate-400 dark:text-slate-500 mt-2">
               &copy; {currentYear}
             </p>
           </div>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-2">
             {socialLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 target={link.href.startsWith('mailto') ? undefined : '_blank'}
                 rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                className="text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors"
+                className="p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-colors"
                 aria-label={link.label}
               >
                 <link.icon className="w-4 h-4" />
@@ -44,7 +44,7 @@ export default function Footer() {
             ))}
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-2 ml-2 pl-4 border-l border-slate-200 dark:border-slate-800 rounded-none text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors"
               aria-label="Back to top"
               title="Back to top"
             >
