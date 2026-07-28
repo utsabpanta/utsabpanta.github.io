@@ -48,6 +48,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet" />
     <title>Utsab Pant | Engineering Leader</title>
+    <!--
+      Pages are prerendered, but framer-motion ships its entry animations at
+      style="opacity:0" and waits for the bundle to fade them in. If the bundle
+      never arrives the text is all there and all invisible, leaving what looks
+      like a bare header. That happens two different ways, so there are two
+      guards: <noscript> covers scripting being switched off, and the error
+      listener covers a bundle that 404s or gets swapped for a filter's block
+      page. An author !important rule outranks the inline style in both cases.
+    -->
+    <noscript>
+      <style>
+        [style*='opacity:0'] { opacity: 1 !important; transform: none !important; }
+      </style>
+    </noscript>
+    <script>
+      addEventListener('error', function (e) {
+        var el = e.target;
+        if (!el || el.tagName !== 'SCRIPT' || !el.src) return;
+        if (document.getElementById('reveal')) return;
+        var s = document.createElement('style');
+        s.id = 'reveal';
+        s.textContent = "[style*='opacity:0']{opacity:1!important;transform:none!important}";
+        document.head.appendChild(s);
+      }, true);
+    </script>
     <!-- Single Page Apps for GitHub Pages - redirect script -->
     <script type="text/javascript">
       (function(l) {
