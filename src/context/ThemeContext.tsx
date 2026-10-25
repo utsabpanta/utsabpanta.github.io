@@ -13,6 +13,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('dark');
 
   useEffect(() => {
+    // Tells the reveal guard in index.html that the bundle ran and hydration committed.
+    document.documentElement.setAttribute('data-hydrated', '');
     const current = document.documentElement.classList.contains('light') ? 'light' : 'dark';
     if (current !== theme) setThemeState(current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -27,11 +29,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('theme', next);
   };
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 }
 
 export function useTheme() {

@@ -1,3 +1,10 @@
+/* Self-hosted fonts. These used to come from fonts.googleapis.com, and a proxy that
+   stalled that request left the page blank. Now every byte comes from this origin. */
+@import '@fontsource-variable/inter/wght.css';
+@import '@fontsource-variable/newsreader/opsz.css';
+@import '@fontsource-variable/newsreader/opsz-italic.css';
+@import '@fontsource-variable/jetbrains-mono/index.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,7 +12,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter Variable', 'Inter', system-ui, sans-serif;
   }
 
   body {

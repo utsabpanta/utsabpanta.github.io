@@ -1,0 +1,95 @@
+{
+  "permissions": {
+    "deny": [
+      "Edit(./.claude/settings.json)",
+      "Edit(./.claude/hooks/**)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Edit(./dist/**)",
+      "Edit(./dist-ssr/**)",
+      "Edit(./package-lock.json)",
+      "Edit(./.github/workflows/**)",
+      "Bash(npm run deploy*)",
+      "Bash(npx gh-pages*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Bash(npm install*)",
+      "Bash(npm uninstall*)"
+    ],
+    "allow": [
+      "Bash(npm run lint*)",
+      "Bash(npm run build)",
+      "Bash(npm run format*)",
+      "Bash(npx tsc --noEmit*)",
+      "Bash(npx prettier*)",
+      "Bash(node scripts/*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git ls-files*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/guard-write.mjs",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/guard-bash.mjs",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/format.mjs",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/stop-gate.mjs",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/stop-gate.mjs",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

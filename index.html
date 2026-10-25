@@ -44,9 +44,12 @@
       ]
     }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet" />
+    <!--
+      Fonts are self-hosted (see src/index.css). The site makes no request to any
+      third-party origin. A corporate proxy that silently held the old Google Fonts
+      stylesheet blocked the HTML parser at this point in the head, and the page
+      stayed blank until that request timed out.
+    -->
     <title>Utsab Pant | Engineering Leader</title>
     <!--
       Pages are prerendered, but framer-motion ships its entry animations at
@@ -63,15 +66,26 @@
       </style>
     </noscript>
     <script>
-      addEventListener('error', function (e) {
-        var el = e.target;
-        if (!el || el.tagName !== 'SCRIPT' || !el.src) return;
-        if (document.getElementById('reveal')) return;
-        var s = document.createElement('style');
-        s.id = 'reveal';
-        s.textContent = "[style*='opacity:0']{opacity:1!important;transform:none!important}";
-        document.head.appendChild(s);
-      }, true);
+      (function () {
+        function reveal() {
+          if (document.getElementById('reveal')) return;
+          var s = document.createElement('style');
+          s.id = 'reveal';
+          s.textContent = "[style*='opacity:0']{opacity:1!important;transform:none!important}";
+          document.head.appendChild(s);
+        }
+        // A script that fails to load: a 404, a filter's block page, a dropped connection.
+        addEventListener('error', function (e) {
+          var el = e.target;
+          if (el && el.tagName === 'SCRIPT' && el.src) reveal();
+        }, true);
+        // Everything else: a bundle the browser cannot parse, a crash during hydration,
+        // a proxy that stalls the request. If the app has not marked itself hydrated
+        // within three seconds, show the prerendered text as it is.
+        setTimeout(function () {
+          if (!document.documentElement.hasAttribute('data-hydrated')) reveal();
+        }, 3000);
+      })();
     </script>
     <!-- Single Page Apps for GitHub Pages - redirect script -->
     <script type="text/javascript">
